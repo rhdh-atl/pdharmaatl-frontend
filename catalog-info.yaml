@@ -1,0 +1,48 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: pdharmaatl-poi-map-app-dev
+  annotations:
+    argocd/app-name: pdharmaatl-poi-map-app-dev
+    backstage.io/kubernetes-id: pdharmaatl-poi-map-app
+    backstage.io/kubernetes-namespace: pdharmaatl
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: rhdh-atl/pdharmaatl-frontend
+    janus-idp.io/tekton-enabled: 'true'
+  tags:
+    - typescript
+    - angular
+    - workshop
+  links:
+    - url: https://console-openshift-console.apps.j0i9yf30.eastus2.aroapp.io/dev-pipelines/ns/pdharmaatl/
+      title: Pipelines
+      icon: web
+    - url: https://console-openshift-console.apps.j0i9yf30.eastus2.aroapp.io/k8s/ns/pdharmaatl/deployments/pdharmaatl-poi-map-app
+      title: Deployment
+      icon: web
+    - url: https://devspaces.apps.j0i9yf30.eastus2.aroapp.io/#https://github.com/rhdh-atl/pdharmaatl-frontend?che-editor=che-incubator/che-code/latest&devfilePath=.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: http://pdharmaatl-poi-map-app-pdharmaatl.apps.j0i9yf30.eastus2.aroapp.io
+      title: Map
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "pdharmaatl"
+  system: workshop-system-pdharmaatl
+  consumesApis:
+    - gateway-api-pdharmaatl
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: workshop-system-pdharmaatl
+  tags:
+    - backstage
+    - janus-idp
+    - openshift
+    - workshop
+    - rh-summit
+spec:
+  owner: "pdharmaatl"
